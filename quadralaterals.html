@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadrilaterals</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #quadrilateralCanvas {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Quadrilaterals</h1>
+
+    <canvas id="quadrilateralCanvas" width="500" height="400"></canvas>
+
+    <button id="generateButton">New Quadrilateral</button>
+
+    <script>
+        const canvas = document.getElementById('quadrilateralCanvas');
+        const ctx = canvas.getContext('2d');
+        const generateButton = document.getElementById('generateButton');
+
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        const padding = 20; // Keep shapes away from the edges
+
+        function isQuadrilateral(p1, p2, p3, p4) {
+            // Check for collinearity using the cross product
+            const crossProduct = (a, b, c) => (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+
+            // Check if any three consecutive points are collinear
+            if (crossProduct(p1, p2, p3) === 0) return false;
+            if (crossProduct(p2, p3, p4) === 0) return false;
+            if (crossProduct(p3, p4, p1) === 0) return false;
+            if (crossProduct(p4, p1, p2) === 0) return false;
+
+            // Check if the diagonals intersect
+            const intersect = (a, b, c, d) => {
+                const den = (b.x - a.x) * (d.y - c.y) - (b.y - a.y) * (d.x - c.x);
+                if (den === 0) return false; // Lines are parallel or collinear
+
+                const t = ((c.x - a.x) * (d.y - c.y) - (c.y - a.y) * (d.x - c.x)) / den;
+                const u = ((c.x - a.x) * (b.y - a.y) - (c.y - a.y) * (b.x - a.x)) / den;
+
+                return t > 0 && t < 1 && u > 0 && u < 1;
+            };
+
+        
+            if (intersect(p1, p3, p2, p4)) return false;
+
+            return true;
+        }
+
+
+        function generateQuadrilateral() {
+            let points = [];
+            let validQuadrilateral = false;
+
+            while (!validQuadrilateral) {
+                points = [];
+                for (let i = 0; i < 4; i++) {
+                    points.push({
+                        x: Math.random() * (canvasWidth - 2 * padding) + padding,
+                        y: Math.random() * (canvasHeight - 2 * padding) + padding
+                    });
+                }
+
+                // Attempt to order points to avoid self-intersection for drawing.
+                const centroidX = (points[0].x + points[1].x + points[2].x + points[3].x) / 4;
+                const centroidY = (points[0].y + points[1].y + points[2].y + points[3].y) / 4;
+
+                points.sort((a, b) => {
+                    const angleA = Math.atan2(a.y - centroidY, a.x - centroidX);
+                    const angleB = Math.atan2(b.y - centroidY, b.x - centroidX);
+                    return angleA - angleB;
+                });
+
+                // After sorting, check if it forms a valid non-self-intersecting quadrilateral
+                 if (isQuadrilateral(points[0], points[1], points[2], points[3])) {
+                     validQuadrilateral = true;
+                 }
+            }
+
+            return points;
+        }
+
+        function drawQuadrilateral(points) {
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight); // Clear previous drawing
+
+            ctx.beginPath();
+            ctx.moveTo(points[0].x, points[0].y);
+            ctx.lineTo(points[1].x, points[1].y);
+            ctx.lineTo(points[2].x, points[2].y);
+            ctx.lineTo(points[3].x, points[3].y);
+            ctx.closePath(); // Connect the last point to the first
+
+            ctx.strokeStyle = '#007bff'; // Blue outline
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            ctx.fillStyle = 'rgba(0, 123, 255, 0.2)'; // Light blue fill
+            ctx.fill();
+        }
+
+        generateButton.addEventListener('click', () => {
+            const quadrilateralPoints = generateQuadrilateral();
+            drawQuadrilateral(quadrilateralPoints);
+        });
+
+        // Generate a quadrilateral on page load
+        const initialQuadrilateralPoints = generateQuadrilateral();
+        drawQuadrilateral(initialQuadrilateralPoints);
+
+    </script>
+
+</body>
+</html>
