@@ -28,9 +28,7 @@
         a {
             color: #2563eb;
         }
-        a:hover {
-            color: #1d4ed8;
-        }
+        
         ul li {
             margin-bottom: 0.3rem;
         }
@@ -41,6 +39,35 @@
         h1 { font-size: 2.5rem; }
         h2 { font-size: 1.75rem; }
         h3 { font-size: 1.1rem; }
+        /* Navigation styles */
+        nav {
+            background-color: #333; /* Dark background for nav */
+            margin-bottom: 20px; /* Space below nav */
+        }
+
+        nav ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove default padding */
+            margin: 0; /* Remove default margin */
+            text-align: center; /* Center align navigation items */
+        }
+
+        nav ul li {
+            display: inline-block; /* Display list items side-by-side */
+            margin: 0; /* Remove default margin */
+        }
+
+        nav ul li a {
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* White link text */
+            padding: 15px 20px; /* Padding inside links */
+            display: block; /* Make the whole area clickable */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+        }
+
+        nav ul li a:hover {
+            background-color: #555; /* Darker background on hover */
+        }
 
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,6 +75,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gray-100 p-2 md:p-4">
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="photos.html">Photos</a></li> 
+            <li><a href="SidResume.html">Resume</a></li>
+         </ul>
+    </nav>
+
     <div class="container mx-auto max-w-4xl bg-white rounded-lg shadow-lg p-4 md:p-6">
 
         <header class="text-center mb-4 border-b pb-4 border-gray-200">

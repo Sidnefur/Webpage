@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amature Photagraphy</title>
+    <style>
+        /* Basic styling for the body - Consistent with homepage */
+        body {
+            font-family: sans-serif; /* Use a common, readable font */
+            line-height: 1.6; /* Improve readability of paragraphs */
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            background-color: #f4f4f4; /* Light grey background */
+            color: #333; /* Dark grey text color */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack children vertically */
+            min-height: 100vh; /* Ensure body takes at least the full viewport height */
+        }
+
+        /* Header styles - Consistent with homepage */
+        header {
+            background-color:hsl(225, 39%, 49%); /* Blue background */
+            color: rgb(11, 10, 10); /* White text */
+            padding: 20px 0; /* Padding top and bottom */
+            text-align: center; /* Center align text */
+            margin-bottom: 20px; /* Space below header */
+        }
+
+        header h1 {
+            margin: 0; /* Remove default h1 margin */
+            font-size: 2.8em; /* Larger font size */
+        }
+
+        header p {
+            margin-top: 5px;
+            font-size: 1.2em;
+        }
+
+        /* Navigation styles - Consistent with homepage */
+        nav {
+            background-color: #333; /* Dark background for nav */
+            margin-bottom: 20px; /* Space below nav */
+        }
+
+        nav ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove default padding */
+            margin: 0; /* Remove default margin */
+            text-align: center; /* Center align navigation items */
+        }
+
+        nav ul li {
+            display: inline-block; /* Display list items side-by-side */
+            margin: 0; /* Remove default margin */
+        }
+
+        nav ul li a {
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* White link text */
+            padding: 15px 20px; /* Padding inside links */
+            display: block; /* Make the whole area clickable */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+        }
+
+        nav ul li a:hover {
+            background-color: #555; /* Darker background on hover */
+        }
+
+        /* Main content styles - Consistent with homepage */
+        main {
+            flex-grow: 1; /* Allow main content to take up available space */
+            background-color: #fff; /* White background for main content */
+            padding: 20px; /* Add padding inside main */
+            margin: 0 20px 20px 20px; /* Add margin around main content */
+            border-radius: 8px; /* Slightly rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
+        }
+
+        main h2 {
+            color:hsl(225, 39%, 49%); /* Green heading */
+            border-bottom: 2px solid #eee; /* Subtle line under heading */
+            padding-bottom: 5px;
+            margin-top: 0; /* No top margin for the main heading */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        /* Styles specific to the photo gallery */
+        .gallery-container {
+            display: grid; /* Use CSS Grid for layout */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive columns */
+            gap: 20px; /* Space between grid items */
+            padding: 10px; /* Padding inside the container */
+        }
+
+        .gallery-item {
+            border: 1px solid #ccc; /* Border around each image */
+            border-radius: 8px; /* Rounded corners for items */
+            overflow: hidden; /* Hide parts of the image outside the border-radius */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            background-color: #fff; /* White background for items */
+            text-align: center; /* Center image and caption */
+        }
+
+        .gallery-item img {
+            display: block; /* Remove extra space below image */
+            width: 100%; /* Make image fill the item width */
+            height: 200px; /* Fixed height for consistency, can be adjusted */
+            object-fit: cover; /* Crop image to fit without distortion */
+            transition: transform 0.3s ease; /* Smooth zoom effect on hover */
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05); /* Slightly zoom in on hover */
+        }
+
+        .gallery-item p {
+            padding: 10px; /* Padding for the caption */
+            margin: 0; /* Remove default paragraph margin */
+            font-size: 0.9em; /* Smaller font for caption */
+            color: #555; /* Darker grey for caption */
+        }
+
+        /* --- Modal Styles --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.9); /* Black background with opacity */
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%; /* Max width of the image */
+            max-height: 90%; /* Max height of the image */
+        }
+
+        /* The Close Button */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Footer styles - Consistent with homepage */
+        footer {
+            text-align: center; /* Center align text */
+            margin-top: auto; /* Push footer to the bottom */
+            padding: 15px 0;
+            background-color: #333; /* Dark background for footer */
+            color: white; /* White text */
+            font-size: 0.9em; /* Smaller font size */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Sid's Amature Photagraphy</h1>
+        <p>Fresh Farm to Table JPEGs, all taken by me on a cellphone</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="photos.html">Photos</a></li> <li><a href="SidResume.html">Resume</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>My Photo Gallery</h2>
+
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="img/winterTorreys2025.jpg" alt="View of Torreys Peak in Winter">
+                <p>View of Torreys Peak in Winter</p>
+            </div>
+
+            <div class="gallery-item">
+                <img src="img\ZionSunset.jpg" alt="Zion National Park at Sunset">
+                <p>Zion National Park at sun set</p>
+            </div>
+
+            <div class="gallery-item">
+                <img src="img/Pika Eating.jpg" alt="Pika eating some grass">
+                <p>Pika Eating some grass</p>
+            </div>
+
+            <div class="gallery-item">
+                <img src="img/Gunnison Rainbow.jpg" alt="Rainbow over Gunnison">
+                <p>Rainbow over Black Canyon of the Gunnison</p>
+            </div>
+
+             <div class="gallery-item">
+                <img src="img/Monumnet Vally.jpg" alt="Monument Valley">
+                <p>Monument Valley</p>
+            </div>
+
+             <div class="gallery-item">
+                <img src="img/Lone Eagle Peak.jpg" alt="Lone Eagle Peak">
+                <p>Lone Eagle Peak</p>
+            </div>
+
+        </div>
+        </main>
+
+    <footer>
+        <p>&copy; 2025 Sidney Sandefur. All rights reserved. (I do not have a lawyer)</p>
+    </footer>
+
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+
+        <img class="modal-content" id="img01">
+
+        </div>
+    <script>
+        // Get the modal, the image inside it, and the close button
+        const modal = document.getElementById("myModal");
+        const modalImg = document.getElementById("img01");
+        const span = document.getElementsByClassName("close")[0]; // Get the first element with class "close"
+
+        // Get all gallery images
+        const galleryItems = document.querySelectorAll(".gallery-item img");
+
+        // Loop through all gallery images and add a click event listener
+        galleryItems.forEach(item => {
+            item.onclick = function(){
+                modal.style.display = "flex"; // Show the modal (using flex to center)
+                modalImg.src = this.src; // Set the modal image source to the clicked image source
+                modalImg.alt = this.alt; // Set the modal image alt text
+                // If you want to show a caption, uncomment the line below and the caption div in HTML
+                // document.getElementById("caption").innerHTML = this.nextElementSibling ? this.nextElementSibling.innerText : '';
+            }
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the image, close the modal
+        modal.onclick = function(event) {
+          if (event.target === modal) { // Check if the click was directly on the modal background
+            modal.style.display = "none";
+          }
+        }
+
+        // Optional: Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.style.display === 'flex') {
+                modal.style.display = 'none';
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>

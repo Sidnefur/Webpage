@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Homepage</title>
+    <style>
+        body {
+            font-family: sans-serif; /* Use a common, readable font */
+            line-height: 1.6; /* Improve readability of paragraphs */
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            background-color: #f4f4f4; /* Light grey background */
+            color: #333; /* Dark grey text color */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack children vertically */
+            min-height: 100vh; /* Ensure body takes at least the full viewport height */
+        }
+
+        /* Header styles */
+        header {
+            background-color: hsl(225, 39%, 49%); /* Blue background */
+            color: #000000; /* Black text */
+            padding: 20px 0; /* Padding top and bottom */
+            text-align: center; /* Center align text */
+            margin-bottom: 20px; /* Space below header */
+        }
+
+        header h1 {
+            margin: 0; /* Remove default h1 margin */
+            font-size: 2.8em; /* Larger font size */
+        }
+
+        header p {
+            margin-top: 5px;
+            font-size: 1.2em;
+        }
+
+        /* Navigation styles */
+        nav {
+            background-color: #333; /* Dark background for nav */
+            margin-bottom: 20px; /* Space below nav */
+        }
+
+        nav ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove default padding */
+            margin: 0; /* Remove default margin */
+            text-align: center; /* Center align navigation items */
+        }
+
+        nav ul li {
+            display: inline-block; /* Display list items side-by-side */
+            margin: 0; /* Remove default margin */
+        }
+
+        nav ul li a {
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* White link text */
+            padding: 15px 20px; /* Padding inside links */
+            display: block; /* Make the whole area clickable */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+        }
+
+        nav ul li a:hover {
+            background-color: #555; /* Darker background on hover */
+        }
+
+        /* Main content styles */
+        main {
+            flex-grow: 1; /* Allow main content to take up available space */
+            background-color: #fff; /* White background for main content */
+            padding: 20px; /* Add padding inside main */
+            margin: 0 20px 20px 20px; /* Add margin around main content */
+            border-radius: 8px; /* Slightly rounded corners */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow */
+        }
+
+        main h2, main h3 {
+            color: hsl(225, 39%, 49%); /* Blue background */
+            border-bottom: 2px solid #eee; /* Subtle line under headings */
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+
+        main h2:first-child {
+            margin-top: 0; /* No top margin for the first heading */
+        }
+
+
+        /* Footer styles */
+        footer {
+            text-align: center; /* Center align text */
+            margin-top: auto; /* Push footer to the bottom */
+            padding: 15px 0;
+            background-color: #333; /* Dark background for footer */
+            color: white; /* White text */
+            font-size: 0.9em; /* Smaller font size */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="img/Homepage.gif" alt="Sid's Website">
+        <p>My mom's favorite place on the internet</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="photos.html">Photos</a></li> 
+            <li><a href="SidResume.html">Resume</a></li>
+            <li><a href="quadralaterals.html">Quadrilaterals</a></li>
+         </ul>
+    </nav>
+
+    <main>
+        <h2>About</h2>
+        <p>
+            This is a basic personal website designed to share a little about me.
+        </p>
+
+        <h3>Updates:</h3>
+        <ul>
+            <li>May 4th 2025: This is the birth of this website.</li>
+        </ul>
+
+        </main>
+
+    <footer>
+        <p>&copy; 2025 Sidney Sandefur. All rights reserved. (I do not have a lawyer)</p>
+    </footer>
+
+</body>
+</html>

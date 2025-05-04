@@ -37,9 +37,48 @@
         button:hover {
             background-color: #4cae4c;
         }
+        /* Navigation styles */
+        nav {
+            background-color: #333; /* Dark background for nav */
+            margin-bottom: 20px; /* Space below nav */
+        }
+
+        nav ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove default padding */
+            margin: 0; /* Remove default margin */
+            text-align: center; /* Center align navigation items */
+        }
+
+        nav ul li {
+            display: inline-block; /* Display list items side-by-side */
+            margin: 0; /* Remove default margin */
+        }
+
+        nav ul li a {
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* White link text */
+            padding: 15px 20px; /* Padding inside links */
+            display: block; /* Make the whole area clickable */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+        }
+
+        nav ul li a:hover {
+            background-color: #555; /* Darker background on hover */
+        }
+
     </style>
 </head>
+
 <body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="photos.html">Photos</a></li> 
+            <li><a href="SidResume.html">Resume</a></li>
+            <li><a href="quadralaterals.html">Quadrilaterals</a></li>
+         </ul>
+    </nav>
 
     <h1>Quadrilaterals</h1>
 
